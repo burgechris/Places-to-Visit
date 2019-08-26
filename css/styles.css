@@ -1,16 +1,18 @@
-.col-md-4 {
-  text-align: center;
-}
 img {
   width: 325px;
   height: auto;
   padding: 5px;
+  display: none;
+  margin: auto;
 }
 
 .jumbotron {
   text-align: center;
 }
+.panel {
+  text-align: center;
+}
 
-.placeinfo {
+.panel-info {
   display: none;
 }

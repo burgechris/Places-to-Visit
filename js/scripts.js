@@ -1,14 +1,3 @@
-//UI Logic
-$(document).ready(function() {
-  $('img#tetons').click(function(){
-    $('img').toggle();
-    $('.panel-info').toggle(function(place1){
-      $('panel-info').append(place1);
-    });
-
-
-  });
-});
 
 //Business Logic for the Directory
 function PlacesDirectory(){
@@ -27,24 +16,51 @@ PlacesDirectory.prototype.assignId = function(){
 }
 
 //Business Logic for Places
-function Place(location, landmarks, timeOfYear, activities){
+function Place(location, landmarks, activities){
   this.location = location;
   this.landmarks = landmarks;
-  this.timeOfYear = timeOfYear;
   this.activities = activities;
 }
 
 var catalogOfDestinations = new PlacesDirectory;
-var place1 = new Place('The Tetons', 'Cathedral Group, Mount Owen, Tewwinot', 'All seasons', 'Hiking, Skiing, Sightseeing');
-var place2 = new Place('Barbados', 'Beautiful Beaches, Shallow Waters, Historic Architecture', 'December to May', 'Swimming, Snorkeling, Hiking, Leisure');
-var place3 = new Place('Spain', 'Barcelona, Mallorca, la Sagrada Familia, Pyrenees', "All seaons", "Hiking, sightseeing, shopping");
-var place4 = new Place("Lake Garda", "The Ancient Fortified Town of Sirmione, Scaliger Castle, The Sulfur Springs", "All Seasons", "Swimming, Sightseeing, Dining");
-var place5 = new Place("Arches National Park", "Double Arch, Firey Furnace, Delicate Arch", "All Seasons", "Hiking, sightseeing, Guided Tours");
-var place6 =new Place('Alvord Desert', 'Alvord Hot Springs, Mickey Hot Springs, Borax Lake', 'All Seasons', "Traversing, Taking a Dip");
+var tetons = new Place('The Tetons', 'Cathedral Group, Mount Owen, Tewwinot', 'Hiking, Skiing, Sightseeing');
+var barbados = new Place('Barbados', 'Beautiful Beaches, Shallow Waters, Historic Architecture', 'Swimming, Snorkeling, Hiking, Leisure');
+var spain = new Place('Spain', 'Barcelona, Mallorca, la Sagrada Familia, Pyrenees', "Hiking, sightseeing, shopping");
 
-catalogOfDestinations.addPlace(place1);
-catalogOfDestinations.addPlace(place2);
-catalogOfDestinations.addPlace(place3);
-catalogOfDestinations.addPlace(place4);
-catalogOfDestinations.addPlace(place5);
-catalogOfDestinations.addPlace(place6);
+catalogOfDestinations.addPlace(tetons);
+catalogOfDestinations.addPlace(barbados);
+catalogOfDestinations.addPlace(spain);
+
+
+//UI Logic
+$(document).ready(function() {
+  $('#dest').change(function(event) {
+    event.preventDefault();
+    var selectValue = $('#dest').val()
+    $(".panel-info").show();
+    $('img').hide();
+    switch (parseInt(selectValue)) {
+      case 1:
+        
+      break;
+      case 2:
+        $('h3').text(catalogOfDestinations.places[0].location);
+        $('#item1').text(catalogOfDestinations.places[0].landmarks);
+        $('#item2').text(catalogOfDestinations.places[0].activities);
+        $('#tetons').show();
+        break;
+      case 3:
+        $('h3').text(catalogOfDestinations.places[1].location);
+        $('#item1').text(catalogOfDestinations.places[1].landmarks);
+        $('#item2').text(catalogOfDestinations.places[1].activities);
+        $('#barbados').show();
+        break;
+      case 4:
+        $('h3').text(catalogOfDestinations.places[2].location);
+        $('#item1').text(catalogOfDestinations.places[2].landmarks);
+        $('#item2').text(catalogOfDestinations.places[2].activities);
+        $('#spain').show();
+        break;
+      }
+  });
+});
