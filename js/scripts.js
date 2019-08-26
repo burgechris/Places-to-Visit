@@ -1,3 +1,15 @@
+//UI Logic
+$(document).ready(function() {
+  $('img#tetons').click(function(){
+    $('img').toggle();
+    $('.panel-info').toggle(function(place1){
+      $('panel-info').append(place1);
+    });
+
+
+  });
+});
+
 //Business Logic for the Directory
 function PlacesDirectory(){
   this.places = [];
